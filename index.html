@@ -48,6 +48,7 @@ body {
 h1 {
   color: #6a0dad;
   line-height: 1.5;
+  font-size: 3em;
 }
 
 .signature {
@@ -55,7 +56,17 @@ h1 {
   bottom: 18px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 14px;
+  font-size: 1.9em;
+  color: #8a4dcf;
+  opacity: 0.85;
+  font-style: italic;
+}
+.signature {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.7em;
   color: #8a4dcf;
   opacity: 0.85;
   font-style: italic;
@@ -66,7 +77,7 @@ button {
   margin: 14px;
   border: none;
   border-radius: 40px;
-  font-size: 17px;
+  font-size: 19px;
   cursor: pointer;
   transition: transform 0.25s;
 }
@@ -99,7 +110,7 @@ button:hover {
 /* Petals */
 .petal {
   position: absolute;
-  top: -50px;
+  top: -20px;
   font-size: 22px;
   animation: fall linear forwards;
 }
@@ -116,14 +127,15 @@ button:hover {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 230px;
-  height: 310px;
+  width: 60vw;
+  height: 50vh;
   transform: translate(-50%, -50%);
   border-radius: 22px;
   overflow: hidden;
   box-shadow: 0 25px 55px rgba(0,0,0,0.45);
   display: none;
   animation: fadeIn 2s ease;
+  max-width: 560px;
 }
 
 @keyframes fadeIn {
@@ -163,7 +175,7 @@ button:hover {
 <div class="container" id="box">
   <h1 class="fade-text">
     Ma Épi ❤️<br>
-    veux-tu être ma Valentine ?
+    Veux-tu être ma Valentine ?
   </h1>
   <button id="yes">Oui 😍</button>
   <button id="no">Non 😭</button>
@@ -190,7 +202,7 @@ const music = document.getElementById("music");
 const slideshow = document.getElementById("slideshow");
 
 const hearts = ["💜", "❤️", "💛"];
-const stars = ["✨"];
+const stars = ["✨💍💎"];
 const petals = ["🌸","🌺"];
 
 function floatingItem(symbol) {
@@ -224,6 +236,7 @@ yesBtn.onclick = () => {
       I purple you 💜
     </h1>
     <div class="signature">Ton Andy qui t’aime énormément</div>
+    <div class=''signature''>Ma jolie❤️</div>
   `;
 
   music.volume = 0.9;
