@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Pour Ma Épi 💜</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #6a0dad, #b57edc);
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  animation: heartbeat 6s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(1.08); }
+  100% { filter: brightness(1); }
+}
+
+.container {
+  position: relative;
+  z-index: 10;
+  background: rgba(255,255,255,0.95);
+  padding: 45px 45px 65px;
+  border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  animation: pop 1.2s ease;
+}
+
+@keyframes pop {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.fade-text {
+  animation: fadeText 1.8s ease forwards;
+}
+
+@keyframes fadeText {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+  color: #6a0dad;
+  line-height: 1.5;
+}
+
+.signature {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  color: #8a4dcf;
+  opacity: 0.85;
+  font-style: italic;
+}
+
+button {
+  padding: 15px 35px;
+  margin: 14px;
+  border: none;
+  border-radius: 40px;
+  font-size: 17px;
+  cursor: pointer;
+  transition: transform 0.25s;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+#yes {
+  background: linear-gradient(45deg, #6a0dad, #ff4d6d);
+  color: white;
+}
+
+#no {
+  background: #ddd;
+}
+
+/* Floating elements */
+.floating {
+  position: absolute;
+  pointer-events: none;
+  animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-380px); opacity: 0; }
+}
+
+/* Petals */
+.petal {
+  position: absolute;
+  top: -50px;
+  font-size: 22px;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Slideshow */
+.slideshow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 230px;
+  height: 310px;
+  transform: translate(-50%, -50%);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 25px 55px rgba(0,0,0,0.45);
+  display: none;
+  animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, -45%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+.slideshow img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  opacity: 0;
+  animation: slideShow 35s infinite;
+}
+
+.slideshow img:nth-child(1) { animation-delay: 0s; }
+.slideshow img:nth-child(2) { animation-delay: 5s; }
+.slideshow img:nth-child(3) { animation-delay: 10s; }
+.slideshow img:nth-child(4) { animation-delay: 15s; }
+.slideshow img:nth-child(5) { animation-delay: 20s; }
+.slideshow img:nth-child(6) { animation-delay: 25s; }
+.slideshow img:nth-child(7) { animation-delay: 30s; }
+
+@keyframes slideShow {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  30% { opacity: 1; }
+  40% { opacity: 0; }
+  100% { opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="box">
+  <h1 class="fade-text">
+    Ma Épi ❤️<br>
+    veux-tu être ma Valentine ?
+  </h1>
+  <button id="yes">Oui 😍</button>
+  <button id="no">Non 😭</button>
+  <div class="signature">Ton Andy qui t’aime énormément</div>
+</div>
+
+<div class="slideshow" id="slideshow">
+  <img src="photo1.jpg">
+  <img src="photo2.jpg">
+  <img src="photo3.jpg">
+  <img src="photo4.jpg">
+  <img src="photo5.jpg">
+  <img src="photo6.jpg">
+  <img src="photo7.jpg">
+</div>
+
+<audio id="music" src="love-wins-all.mp3"></audio>
+
+<script>
+const yesBtn = document.getElementById("yes");
+const noBtn = document.getElementById("no");
+const box = document.getElementById("box");
+const music = document.getElementById("music");
+const slideshow = document.getElementById("slideshow");
+
+const hearts = ["💜", "❤️", "💛"];
+const stars = ["✨"];
+const petals = ["🌸","🌺"];
+
+function floatingItem(symbol) {
+  const el = document.createElement("div");
+  el.className = "floating";
+  el.innerHTML = symbol;
+  el.style.left = Math.random() * 100 + "vw";
+  el.style.bottom = "-30px";
+  el.style.fontSize = (18 + Math.random() * 16) + "px";
+  el.style.animationDuration = (3 + Math.random() * 3) + "s";
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 6500);
+}
+
+function petalFall() {
+  const p = document.createElement("div");
+  p.className = "petal";
+  p.innerHTML = petals[Math.floor(Math.random()*petals.length)];
+  p.style.left = Math.random() * 100 + "vw";
+  p.style.animationDuration = (7 + Math.random()*4) + "s";
+  document.body.appendChild(p);
+  setTimeout(() => p.remove(), 11000);
+}
+
+yesBtn.onclick = () => {
+  box.innerHTML = `
+    <h1 class="fade-text">
+      Ma Épi 💜<br>
+      Je t’aime ❤️<br><br>
+      I yellow you 💛<br>
+      I purple you 💜
+    </h1>
+    <div class="signature">Ton Andy qui t’aime énormément</div>
+  `;
+
+  music.volume = 0.9;
+  music.play();
+  slideshow.style.display = "block";
+
+  setInterval(() => floatingItem(hearts[Math.floor(Math.random()*hearts.length)]), 260);
+  setInterval(() => floatingItem(stars[0]), 1400);
+  setInterval(petalFall, 900);
+};
+
+noBtn.onmouseover = () => {
+  noBtn.style.position = "absolute";
+  noBtn.style.left = Math.random() * 80 + "vw";
+  noBtn.style.top = Math.random() * 80 + "vh";
+};
+</script>
+
+</body>
+</html>
